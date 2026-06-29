@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<!-- saved from url=(0067)file:///C:/Users/tommy/Downloads/cabin-trip-presentation%20(1).html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HOT TAKES — Cabin Trip</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;700;800&display=swap');
+
+  :root{
+    --bg:#06060c;
+    --panel:rgba(22,22,38,.72);
+    --ink:#f6f6ff;
+    --dim:#9a9ab8;
+    --acid:#caff3f;
+    --hot:#ff2d6f;
+    --cyan:#22e0ff;
+    --violet:#a06bff;
+    --amber:#ffc14d;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%;overflow:hidden}
+  body{background:var(--bg);color:var(--ink);font-family:'Space Grotesk',sans-serif;
+    -webkit-font-smoothing:antialiased;position:relative;perspective:1600px}
+
+  /* ===== living background ===== */
+  .aura{position:fixed;inset:-30%;z-index:0;filter:blur(90px);opacity:.55;
+    background:
+      radial-gradient(40% 40% at 20% 30%,var(--hot),transparent 60%),
+      radial-gradient(45% 45% at 80% 25%,var(--cyan),transparent 60%),
+      radial-gradient(50% 50% at 50% 85%,var(--violet),transparent 60%);
+    animation:swirl 22s ease-in-out infinite alternate}
+  @keyframes swirl{
+    0%{transform:translate(-4%,-2%) rotate(0deg) scale(1.05)}
+    50%{transform:translate(5%,3%) rotate(8deg) scale(1.15)}
+    100%{transform:translate(-3%,4%) rotate(-6deg) scale(1.08)}}
+  .grid-bg{position:fixed;inset:0;z-index:1;opacity:.14;
+    background-image:linear-gradient(rgba(255,255,255,.5) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.5) 1px,transparent 1px);
+    background-size:54px 54px;mask-image:radial-gradient(circle at 50% 50%,#000 30%,transparent 78%);
+    animation:drift 30s linear infinite}
+  @keyframes drift{to{background-position:540px 540px}}
+  .noise{position:fixed;inset:0;z-index:2;pointer-events:none;opacity:.045;
+    background:repeating-linear-gradient(0deg,#fff,#fff 1px,transparent 1px,transparent 2px)}
+  .vign{position:fixed;inset:0;z-index:2;pointer-events:none;
+    background:radial-gradient(circle at 50% 45%,transparent 55%,rgba(0,0,0,.65))}
+
+  .stage{position:relative;z-index:5;height:100vh;width:100vw}
+  .shake{animation:shake .5s cubic-bezier(.36,.07,.19,.97)}
+  @keyframes shake{10%,90%{transform:translate(-2px,1px)}20%,80%{transform:translate(4px,-2px)}
+    30%,50%,70%{transform:translate(-6px,2px)}40%,60%{transform:translate(6px,-1px)}}
+
+  .slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;
+    align-items:center;padding:5vh 6vw;text-align:center;
+    opacity:0;visibility:hidden;transform:translateZ(-180px) rotateX(6deg);
+    transition:opacity .6s ease,transform .7s cubic-bezier(.18,.9,.16,1),visibility .6s}
+  .slide.active{opacity:1;visibility:visible;transform:none}
+
+  /* orchestrated child reveals */
+  .slide.active .pop{animation:rise .8s cubic-bezier(.2,1.25,.25,1) backwards}
+  .slide.active .pop:nth-child(1){animation-delay:.08s}
+  .slide.active .pop:nth-child(2){animation-delay:.2s}
+  .slide.active .pop:nth-child(3){animation-delay:.32s}
+  .slide.active .pop:nth-child(4){animation-delay:.44s}
+  .slide.active .pop:nth-child(5){animation-delay:.56s}
+  .slide.active .pop:nth-child(6){animation-delay:.68s}
+  @keyframes rise{from{opacity:0;transform:translateY(46px) scale(.96) rotateX(12deg);filter:blur(6px)}
+    to{opacity:1;transform:none;filter:blur(0)}}
+
+  .eyebrow{font-family:'JetBrains Mono',monospace;letter-spacing:.45em;text-transform:uppercase;
+    font-size:clamp(.6rem,1.4vw,.85rem);color:var(--acid);margin-bottom:2.4vh;
+    text-shadow:0 0 18px rgba(202,255,63,.5)}
+
+  h1.title{font-family:'Anton',sans-serif;font-weight:400;
+    font-size:clamp(3rem,12vw,10rem);line-height:.86;letter-spacing:.01em;text-transform:uppercase}
+  .stroke{color:transparent;-webkit-text-stroke:clamp(1.5px,.35vw,3px) var(--ink)}
+  .shine{background:linear-gradient(100deg,var(--acid),var(--cyan),var(--violet),var(--hot),var(--acid));
+    background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
+    animation:shine 6s linear infinite;filter:drop-shadow(0 4px 30px rgba(160,107,255,.35))}
+  @keyframes shine{to{background-position:300% 0}}
+
+  .glitch{position:relative;display:inline-block}
+  .glitch::before,.glitch::after{content:attr(data-t);position:absolute;left:0;top:0;width:100%}
+  .glitch::before{color:var(--hot);animation:gl1 3s infinite steps(2);clip-path:inset(0 0 55% 0)}
+  .glitch::after{color:var(--cyan);animation:gl2 3.4s infinite steps(2);clip-path:inset(55% 0 0 0)}
+  @keyframes gl1{0%,92%,100%{transform:none}93%{transform:translate(-5px,-2px)}96%{transform:translate(4px,1px)}}
+  @keyframes gl2{0%,90%,100%{transform:none}94%{transform:translate(5px,2px)}97%{transform:translate(-4px,-1px)}}
+
+  .makers{margin-top:4.5vh;font-family:'JetBrains Mono',monospace;
+    font-size:clamp(.8rem,2vw,1.2rem);color:var(--dim)}
+  .makers b{color:var(--amber);font-weight:800;text-shadow:0 0 14px rgba(255,193,77,.45)}
+  .kicker{font-size:clamp(1rem,2.4vw,1.55rem);color:#d6d6ec;max-width:58ch;margin-top:3vh;line-height:1.5}
+
+  /* ===== topic ===== */
+  .topic-num{font-family:'Anton';font-size:clamp(3.5rem,16vw,13rem);line-height:.72;
+    color:transparent;-webkit-text-stroke:2px var(--acid);opacity:.45;
+    text-shadow:0 0 50px rgba(202,255,63,.25);letter-spacing:.02em}
+  .topic-q{font-family:'Anton';font-weight:400;font-size:clamp(1.9rem,5.8vw,4.8rem);
+    line-height:1;text-transform:uppercase;max-width:20ch;margin:1vh 0 1.6vh;letter-spacing:.005em}
+  .topic-sub{color:#c4c4dc;font-size:clamp(.9rem,2vw,1.22rem);max-width:64ch;line-height:1.55}
+
+  .sides{display:flex;gap:clamp(14px,3vw,44px);margin-top:4vh;flex-wrap:wrap;justify-content:center;
+    perspective:900px}
+  .side{position:relative;overflow:hidden;border-radius:20px;padding:22px 28px;
+    min-width:min(40vw,280px);cursor:pointer;background:var(--panel);
+    backdrop-filter:blur(14px);border:2px solid;
+    font-family:'JetBrains Mono';font-weight:800;font-size:clamp(.95rem,2vw,1.2rem);
+    letter-spacing:.02em;transition:transform .28s cubic-bezier(.2,1.2,.3,1),box-shadow .28s;
+    transform-style:preserve-3d}
+  .side small{display:block;font-family:'Space Grotesk';font-weight:400;color:var(--dim);
+    font-size:.7em;margin-top:8px;text-transform:none;letter-spacing:0}
+  .side.a{border-color:var(--cyan);color:var(--cyan)}
+  .side.b{border-color:var(--hot);color:var(--hot)}
+  .side::after{content:"";position:absolute;inset:0;border-radius:20px;opacity:0;transition:opacity .3s;
+    background:radial-gradient(120% 120% at 50% 0%,currentColor,transparent 55%);mix-blend-mode:overlay}
+  .side:hover{transform:translateY(-10px) rotateX(6deg) scale(1.04)}
+  .side:hover::after{opacity:.25}
+  .side.a:hover{box-shadow:0 22px 60px -14px var(--cyan)}
+  .side.b:hover{box-shadow:0 22px 60px -14px var(--hot)}
+  .side .fill{position:absolute;left:0;right:0;bottom:0;height:0;opacity:.2;transition:height .9s cubic-bezier(.2,.9,.2,1)}
+  .side.a .fill{background:var(--cyan)}
+  .side.b .fill{background:var(--hot)}
+  .side .pct{position:absolute;top:10px;right:14px;font-size:1.3em;font-weight:800;opacity:0;
+    transform:scale(.5);transition:opacity .4s,transform .5s cubic-bezier(.2,1.6,.3,1)}
+  .results-on .side .pct{opacity:1;transform:scale(1)}
+  .side.win{animation:winpulse 1s ease}
+  @keyframes winpulse{0%{transform:scale(1)}30%{transform:scale(1.07)}100%{transform:scale(1)}}
+  .side.win.a{box-shadow:0 0 0 3px var(--cyan),0 24px 70px -10px var(--cyan)}
+  .side.win.b{box-shadow:0 0 0 3px var(--hot),0 24px 70px -10px var(--hot)}
+
+  .vote-meta{margin-top:2.6vh;font-family:'JetBrains Mono';font-size:.9rem;color:#cfcfe6;height:1.4em}
+  .reveal-btn{margin-top:2.4vh;position:relative;background:linear-gradient(100deg,var(--acid),var(--cyan));
+    color:#05050a;border:none;font-family:'JetBrains Mono';font-weight:800;padding:14px 28px;border-radius:99px;
+    cursor:pointer;letter-spacing:.08em;text-transform:uppercase;font-size:.82rem;
+    box-shadow:0 10px 40px -8px var(--cyan);transition:transform .15s,box-shadow .2s;overflow:hidden}
+  .reveal-btn:hover{transform:scale(1.07) translateY(-2px);box-shadow:0 16px 50px -8px var(--acid)}
+  .reveal-btn:active{transform:scale(.95)}
+  .reveal-btn::before{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.7),transparent);
+    animation:sweep 2.6s ease-in-out infinite}
+  @keyframes sweep{0%{left:-60%}55%,100%{left:130%}}
+
+  /* HUD */
+  .hud{position:fixed;z-index:30;bottom:18px;left:0;right:0;display:flex;justify-content:space-between;
+    align-items:center;padding:0 26px;font-family:'JetBrains Mono';font-size:.72rem;color:var(--dim);pointer-events:none}
+  .hud .mid{pointer-events:auto;display:flex;gap:12px;align-items:center}
+  .nav{background:rgba(20,20,34,.6);backdrop-filter:blur(8px);border:1px solid #2c2c44;color:var(--ink);
+    width:46px;height:46px;border-radius:50%;cursor:pointer;font-size:1.3rem;transition:.18s}
+  .nav:hover{border-color:var(--acid);color:var(--acid);transform:scale(1.1);box-shadow:0 0 24px -4px var(--acid)}
+  .progress{position:fixed;top:0;left:0;height:4px;z-index:31;transition:width .5s cubic-bezier(.2,.9,.2,1);
+    background:linear-gradient(90deg,var(--acid),var(--cyan),var(--violet));box-shadow:0 0 16px var(--cyan)}
+  .dots{position:fixed;top:50%;right:18px;transform:translateY(-50%);z-index:30;display:flex;
+    flex-direction:column;gap:9px}
+  .dot{width:8px;height:8px;border-radius:50%;background:#3a3a52;transition:.3s;cursor:pointer}
+  .dot.on{background:var(--acid);box-shadow:0 0 12px var(--acid);transform:scale(1.4)}
+
+  .hint{position:fixed;top:16px;right:22px;z-index:30;font-family:'JetBrains Mono';font-size:.66rem;
+    color:var(--dim);text-align:right;line-height:1.7}
+  kbd{background:rgba(20,20,34,.7);border:1px solid #333;border-radius:5px;padding:1px 6px;color:var(--ink)}
+
+  .confetti{position:fixed;z-index:25;pointer-events:none;top:-24px;border-radius:2px}
+  .live-dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--hot);
+    margin-right:8px;animation:blink 1s infinite;box-shadow:0 0 12px var(--hot)}
+  @keyframes blink{50%{opacity:.2}}
+
+
+  #soundBtn{position:fixed;top:14px;left:20px;z-index:40;cursor:pointer;
+    font-family:'JetBrains Mono';font-size:.7rem;letter-spacing:.05em;
+    background:rgba(20,20,34,.7);backdrop-filter:blur(8px);border:1px solid #2c2c44;
+    color:var(--dim);padding:9px 16px;border-radius:99px;transition:.2s}
+  #soundBtn:hover{border-color:var(--acid);color:var(--acid)}
+  #soundBtn.on{color:var(--acid);border-color:var(--acid);box-shadow:0 0 18px -4px var(--acid)}
+
+  @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:opacity .25s!important}}
+</style>
+</head>
+<body>
+<div class="aura"></div>
+<div class="grid-bg"></div>
+<div class="noise"></div>
+<div class="vign"></div>
+<div class="progress" id="progress" style="width: 0%;"></div>
+<div class="dots" id="dots"><div class="dot on"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+
+<button id="soundBtn" onclick="toggleMusic()">♪ sound off</button>
+<div class="hint">
+  <kbd>←</kbd> <kbd>→</kbd> navigate · <kbd>Enter</kbd> reveal<br>
+  <kbd>F</kbd> fullscreen · <kbd>R</kbd> reset votes
+</div>
+
+<div class="stage" id="stage"><div class="slide active">
+  <div class="eyebrow pop">⚠ Cabin Trip Edition · Pick a side · Defend it to the death</div>
+  <h1 class="title pop"><span class="shine">HOT</span></h1>
+  <h1 class="title pop stroke"><span class="glitch" data-t="TAKES">TAKES</span></h1>
+  <p class="kicker pop">10 questions deep enough to keep you up at night — and divisive enough to end a friendship by morning. Vote anonymously. Then defend it by the fire. 🔥</p>
+  <div class="makers pop">made by <b>Tom</b> · <b>Lemma</b> · <b>Meghana</b></div></div><div class="slide">
+  <div class="eyebrow pop"><span class="live-dot"></span>Live · Anonymous · No mercy</div>
+  <h1 class="title pop stroke" style="font-size:clamp(2rem,8vw,6rem)">THE RULES</h1>
+  <p class="kicker pop">Each question has two sides. Tap the one you believe — <b style="color:var(--acid)">100% anonymous</b>, nobody sees your pick. The presenter hits <b style="color:var(--cyan)">REVEAL</b>, the room splits, and then you have to look each other in the eye. 👀</p>
+  <div class="makers pop" style="margin-top:5vh">Tap a side → it locks → <b>REVEAL</b> → explain yourself</div></div><div class="slide" data-topic="0">
+    <div class="topic-num pop">01</div>
+    <h2 class="topic-q pop">Is it ever ok to lie to someone you love?</h2>
+    <p class="topic-sub pop">A kind lie that protects them, or brutal honesty that might break them. Which do you actually owe the people closest to you?</p>
+    <div class="sides pop">
+      <div class="side a" data-side="a" data-topic="0"><div class="fill"></div><span class="pct">0%</span>HONESTY ALWAYS<small>Love can't survive on lies</small></div>
+      <div class="side b" data-side="b" data-topic="0"><div class="fill"></div><span class="pct">0%</span>SOME LIES ARE KIND<small>Truth isn't always a gift</small></div>
+    </div>
+    <div class="vote-meta pop" data-meta="0">No votes yet — tap your side</div>
+    <button class="reveal-btn pop" data-reveal="0">Reveal the split</button></div><div class="slide" data-topic="1">
+    <div class="topic-num pop">02</div>
+    <h2 class="topic-q pop">Would you read your partner's phone if you could get away with it?</h2>
+    <p class="topic-sub pop">No suspicion needed — just the chance. Is the urge to know proof of love, or proof you don't trust them?</p>
+    <div class="sides pop">
+      <div class="side a" data-side="a" data-topic="1"><div class="fill"></div><span class="pct">0%</span>I'D LOOK<small>Knowing beats wondering</small></div>
+      <div class="side b" data-side="b" data-topic="1"><div class="fill"></div><span class="pct">0%</span>NEVER<small>Trust dies the second you peek</small></div>
+    </div>
+    <div class="vote-meta pop" data-meta="1">No votes yet — tap your side</div>
+    <button class="reveal-btn pop" data-reveal="1">Reveal the split</button></div><div class="slide" data-topic="2">
+    <div class="topic-num pop">03</div>
+    <h2 class="topic-q pop">Do we actually have free will — or is it all an illusion?</h2>
+    <p class="topic-sub pop">Every choice you've ever made may have been set in motion before you were born. Are you the author of your life, or just watching it happen?</p>
+    <div class="sides pop">
+      <div class="side a" data-side="a" data-topic="2"><div class="fill"></div><span class="pct">0%</span>FREE WILL IS REAL<small>I choose, therefore I am</small></div>
+      <div class="side b" data-side="b" data-topic="2"><div class="fill"></div><span class="pct">0%</span>IT'S AN ILLUSION<small>Physics already wrote the script</small></div>
+    </div>
+    <div class="vote-meta pop" data-meta="2">No votes yet — tap your side</div>
+    <button class="reveal-btn pop" data-reveal="2">Reveal the split</button></div><div class="slide" data-topic="3">
+    <div class="topic-num pop">04</div>
+    <h2 class="topic-q pop">Is it selfish to choose not to have kids?</h2>
+    <p class="topic-sub pop">A planet that's burning, a life of freedom, or a duty to the future. Who exactly is the 'selfish' one here?</p>
+    <div class="sides pop">
+      <div class="side a" data-side="a" data-topic="3"><div class="fill"></div><span class="pct">0%</span>YOUR LIFE, YOUR CALL<small>Owe nobody a grandchild</small></div>
+      <div class="side b" data-side="b" data-topic="3"><div class="fill"></div><span class="pct">0%</span>IT'S A LITTLE SELFISH<small>Someone has to carry it forward</small></div>
+    </div>
+    <div class="vote-meta pop" data-meta="3">No votes yet — tap your side</div>
+    <button class="reveal-btn pop" data-reveal="3">Reveal the split</button></div><div class="slide" data-topic="4">
+    <div class="topic-num pop">05</div>
+    <h2 class="topic-q pop">If you could know the exact date you'll die — would you?</h2>
+    <p class="topic-sub pop">A sealed envelope with your last day inside. Does knowing free you to truly live, or quietly poison every day until then?</p>
+    <div class="sides pop">
+      <div class="side a" data-side="a" data-topic="4"><div class="fill"></div><span class="pct">0%</span>OPEN IT<small>I'd finally stop wasting time</small></div>
+      <div class="side b" data-side="b" data-topic="4"><div class="fill"></div><span class="pct">0%</span>BURN IT<small>Some doors shouldn't be opened</small></div>
+    </div>
+    <div class="vote-meta pop" data-meta="4">No votes yet — tap your side</div>
+    <button class="reveal-btn pop" data-reveal="4">Reveal the split</button></div><div class="slide" data-topic="5">
+    <div class="topic-num pop">06</div>
+    <h2 class="topic-q pop">Is loyalty to a friend worth covering for a serious crime?</h2>
+    <p class="topic-sub pop">Your best friend did something genuinely wrong and only you know. Where does 'ride or die' actually end?</p>
+    <div class="sides pop">
+      <div class="side a" data-side="a" data-topic="5"><div class="fill"></div><span class="pct">0%</span>BLOOD OVER LAW<small>Loyalty means loyalty</small></div>
+      <div class="side b" data-side="b" data-topic="5"><div class="fill"></div><span class="pct">0%</span>TURN THEM IN<small>Some lines you don't cross for anyone</small></div>
+    </div>
+    <div class="vote-meta pop" data-meta="5">No votes yet — tap your side</div>
+    <button class="reveal-btn pop" data-reveal="5">Reveal the split</button></div><div class="slide" data-topic="6">
+    <div class="topic-num pop">07</div>
+    <h2 class="topic-q pop">Would you take a pill that makes you permanently happy but numb?</h2>
+    <p class="topic-sub pop">No more pain, no more lows — but no more real highs either. A flat, content forever. Do you swallow it?</p>
+    <div class="sides pop">
+      <div class="side a" data-side="a" data-topic="6"><div class="fill"></div><span class="pct">0%</span>TAKE THE PILL<small>Suffering is overrated</small></div>
+      <div class="side b" data-side="b" data-topic="6"><div class="fill"></div><span class="pct">0%</span>KEEP THE PAIN<small>The lows are what make it real</small></div>
+    </div>
+    <div class="vote-meta pop" data-meta="6">No votes yet — tap your side</div>
+    <button class="reveal-btn pop" data-reveal="6">Reveal the split</button></div><div class="slide" data-topic="7">
+    <div class="topic-num pop">08</div>
+    <h2 class="topic-q pop">Is it wrong to be rich while others starve?</h2>
+    <p class="topic-sub pop">You earned it, fair and square — but a fraction of it could save lives right now. At what point does keeping it become a moral failing?</p>
+    <div class="sides pop">
+      <div class="side a" data-side="a" data-topic="7"><div class="fill"></div><span class="pct">0%</span>YOU EARNED IT<small>No one's owed your money</small></div>
+      <div class="side b" data-side="b" data-topic="7"><div class="fill"></div><span class="pct">0%</span>IT'S INDEFENSIBLE<small>Excess next to suffering is a choice</small></div>
+    </div>
+    <div class="vote-meta pop" data-meta="7">No votes yet — tap your side</div>
+    <button class="reveal-btn pop" data-reveal="7">Reveal the split</button></div><div class="slide" data-topic="8">
+    <div class="topic-num pop">09</div>
+    <h2 class="topic-q pop">Could you forgive someone who truly destroyed you?</h2>
+    <p class="topic-sub pop">The deepest betrayal of your life. Is forgiveness the strongest thing a person can do — or just letting them win?</p>
+    <div class="sides pop">
+      <div class="side a" data-side="a" data-topic="8"><div class="fill"></div><span class="pct">0%</span>FORGIVENESS FREES ME<small>Holding on only hurts me</small></div>
+      <div class="side b" data-side="b" data-topic="8"><div class="fill"></div><span class="pct">0%</span>SOME THINGS ARE UNFORGIVABLE<small>Not everything deserves a second chance</small></div>
+    </div>
+    <div class="vote-meta pop" data-meta="8">No votes yet — tap your side</div>
+    <button class="reveal-btn pop" data-reveal="8">Reveal the split</button></div><div class="slide" data-topic="9">
+    <div class="topic-num pop">10</div>
+    <h2 class="topic-q pop">Would you relive your exact life forever, on loop — no changes?</h2>
+    <p class="topic-sub pop">Every joy, every heartbreak, every mistake, on infinite repeat. If you hesitate even a second... what does that say about how you're living now?</p>
+    <div class="sides pop">
+      <div class="side a" data-side="a" data-topic="9"><div class="fill"></div><span class="pct">0%</span>YES, AGAIN<small>I'd say yes to all of it</small></div>
+      <div class="side b" data-side="b" data-topic="9"><div class="fill"></div><span class="pct">0%</span>NOT LIKE THIS<small>I'd need to change something first</small></div>
+    </div>
+    <div class="vote-meta pop" data-meta="9">No votes yet — tap your side</div>
+    <button class="reveal-btn pop" data-reveal="9">Reveal the split</button></div><div class="slide">
+  <div class="eyebrow pop">That's all 10 · Survivors only</div>
+  <h1 class="title pop"><span class="shine">NOW</span></h1>
+  <h1 class="title pop stroke"><span class="glitch" data-t="ARGUE">ARGUE</span></h1>
+  <p class="kicker pop">Defend your darkest takes. Nobody leaves the cabin the same. 🛖</p>
+  <div class="makers pop" style="margin-top:5vh">made with chaos by <b>Tom</b>, <b>Lemma</b> &amp; <b>Meghana</b></div></div></div>
+
+<div class="hud">
+  <div id="hudL">HOT TAKES</div>
+  <div class="mid"><button class="nav" id="prev">‹</button><button class="nav" id="next">›</button></div>
+  <div id="hudR">01</div>
+</div>
+
+<script>
+/* ===== DATA — spicier, deeper ===== */
+const topics = [
+  {n:"01", q:"Is it ever ok to lie to someone you love?",
+   sub:"A kind lie that protects them, or brutal honesty that might break them. Which do you actually owe the people closest to you?",
+   a:{t:"HONESTY ALWAYS",d:"Love can't survive on lies"}, b:{t:"SOME LIES ARE KIND",d:"Truth isn't always a gift"}},
+  {n:"02", q:"Would you read your partner's phone if you could get away with it?",
+   sub:"No suspicion needed — just the chance. Is the urge to know proof of love, or proof you don't trust them?",
+   a:{t:"I'D LOOK",d:"Knowing beats wondering"}, b:{t:"NEVER",d:"Trust dies the second you peek"}},
+  {n:"03", q:"Do we actually have free will — or is it all an illusion?",
+   sub:"Every choice you've ever made may have been set in motion before you were born. Are you the author of your life, or just watching it happen?",
+   a:{t:"FREE WILL IS REAL",d:"I choose, therefore I am"}, b:{t:"IT'S AN ILLUSION",d:"Physics already wrote the script"}},
+  {n:"04", q:"Is it selfish to choose not to have kids?",
+   sub:"A planet that's burning, a life of freedom, or a duty to the future. Who exactly is the 'selfish' one here?",
+   a:{t:"YOUR LIFE, YOUR CALL",d:"Owe nobody a grandchild"}, b:{t:"IT'S A LITTLE SELFISH",d:"Someone has to carry it forward"}},
+  {n:"05", q:"If you could know the exact date you'll die — would you?",
+   sub:"A sealed envelope with your last day inside. Does knowing free you to truly live, or quietly poison every day until then?",
+   a:{t:"OPEN IT",d:"I'd finally stop wasting time"}, b:{t:"BURN IT",d:"Some doors shouldn't be opened"}},
+  {n:"06", q:"Is loyalty to a friend worth covering for a serious crime?",
+   sub:"Your best friend did something genuinely wrong and only you know. Where does 'ride or die' actually end?",
+   a:{t:"BLOOD OVER LAW",d:"Loyalty means loyalty"}, b:{t:"TURN THEM IN",d:"Some lines you don't cross for anyone"}},
+  {n:"07", q:"Would you take a pill that makes you permanently happy but numb?",
+   sub:"No more pain, no more lows — but no more real highs either. A flat, content forever. Do you swallow it?",
+   a:{t:"TAKE THE PILL",d:"Suffering is overrated"}, b:{t:"KEEP THE PAIN",d:"The lows are what make it real"}},
+  {n:"08", q:"Is it wrong to be rich while others starve?",
+   sub:"You earned it, fair and square — but a fraction of it could save lives right now. At what point does keeping it become a moral failing?",
+   a:{t:"YOU EARNED IT",d:"No one's owed your money"}, b:{t:"IT'S INDEFENSIBLE",d:"Excess next to suffering is a choice"}},
+  {n:"09", q:"Could you forgive someone who truly destroyed you?",
+   sub:"The deepest betrayal of your life. Is forgiveness the strongest thing a person can do — or just letting them win?",
+   a:{t:"FORGIVENESS FREES ME",d:"Holding on only hurts me"}, b:{t:"SOME THINGS ARE UNFORGIVABLE",d:"Not everything deserves a second chance"}},
+  {n:"10", q:"Would you relive your exact life forever, on loop — no changes?",
+   sub:"Every joy, every heartbreak, every mistake, on infinite repeat. If you hesitate even a second... what does that say about how you're living now?",
+   a:{t:"YES, AGAIN",d:"I'd say yes to all of it"}, b:{t:"NOT LIKE THIS",d:"I'd need to change something first"}},
+];
+
+/* ===== BUILD ===== */
+const stage=document.getElementById('stage');
+
+const title=document.createElement('div');
+title.className='slide';
+title.innerHTML=`
+  <div class="eyebrow pop">⚠ Cabin Trip Edition · Pick a side · Defend it to the death</div>
+  <h1 class="title pop"><span class="shine">HOT</span></h1>
+  <h1 class="title pop stroke"><span class="glitch" data-t="TAKES">TAKES</span></h1>
+  <p class="kicker pop">10 questions deep enough to keep you up at night — and divisive enough to end a friendship by morning. Vote anonymously. Then defend it by the fire. 🔥</p>
+  <div class="makers pop">made by <b>Tom</b> · <b>Lemma</b> · <b>Meghana</b></div>`;
+stage.appendChild(title);
+
+const join=document.createElement('div');
+join.className='slide';
+join.innerHTML=`
+  <div class="eyebrow pop"><span class="live-dot"></span>Live · Anonymous · No mercy</div>
+  <h1 class="title pop stroke" style="font-size:clamp(2rem,8vw,6rem)">THE RULES</h1>
+  <p class="kicker pop">Each question has two sides. Tap the one you believe — <b style="color:var(--acid)">100% anonymous</b>, nobody sees your pick. The presenter hits <b style="color:var(--cyan)">REVEAL</b>, the room splits, and then you have to look each other in the eye. 👀</p>
+  <div class="makers pop" style="margin-top:5vh">Tap a side → it locks → <b>REVEAL</b> → explain yourself</div>`;
+stage.appendChild(join);
+
+topics.forEach((t,i)=>{
+  const s=document.createElement('div');
+  s.className='slide';s.dataset.topic=i;
+  s.innerHTML=`
+    <div class="topic-num pop">${t.n}</div>
+    <h2 class="topic-q pop">${t.q}</h2>
+    <p class="topic-sub pop">${t.sub}</p>
+    <div class="sides pop">
+      <div class="side a" data-side="a" data-topic="${i}"><div class="fill"></div><span class="pct">0%</span>${t.a.t}<small>${t.a.d}</small></div>
+      <div class="side b" data-side="b" data-topic="${i}"><div class="fill"></div><span class="pct">0%</span>${t.b.t}<small>${t.b.d}</small></div>
+    </div>
+    <div class="vote-meta pop" data-meta="${i}">No votes yet — tap your side</div>
+    <button class="reveal-btn pop" data-reveal="${i}">Reveal the split</button>`;
+  stage.appendChild(s);
+});
+
+const end=document.createElement('div');
+end.className='slide';
+end.innerHTML=`
+  <div class="eyebrow pop">That's all 10 · Survivors only</div>
+  <h1 class="title pop"><span class="shine">NOW</span></h1>
+  <h1 class="title pop stroke"><span class="glitch" data-t="ARGUE">ARGUE</span></h1>
+  <p class="kicker pop">Defend your darkest takes. Nobody leaves the cabin the same. 🛖</p>
+  <div class="makers pop" style="margin-top:5vh">made with chaos by <b>Tom</b>, <b>Lemma</b> & <b>Meghana</b></div>`;
+stage.appendChild(end);
+
+const slides=[...document.querySelectorAll('.slide')];
+
+/* dots */
+const dots=document.getElementById('dots');
+slides.forEach((_,i)=>{const d=document.createElement('div');d.className='dot';d.onclick=()=>go(i);dots.appendChild(d)});
+
+/* ===== VOTING ===== */
+const votes=topics.map(()=>({a:0,b:0}));
+const myVote=topics.map(()=>null);
+
+function vote(topic,side){
+  if(myVote[topic]===side)return;
+  if(musicOn||AC)tick();
+  if(myVote[topic])votes[topic][myVote[topic]]--;
+  votes[topic][side]++;myVote[topic]=side;
+  update(topic);
+  const m=document.querySelector(`[data-meta="${topic}"]`);
+  const tot=votes[topic].a+votes[topic].b;
+  m.textContent=`✓ Locked in · ${tot} vote${tot>1?'s':''} cast · still anonymous`;
+}
+function update(topic){
+  const sl=slides.find(s=>s.dataset.topic==topic);
+  const tot=votes[topic].a+votes[topic].b||1;
+  const pa=Math.round(votes[topic].a/tot*100), pb=100-pa;
+  const sa=sl.querySelector('.side.a'),sb=sl.querySelector('.side.b');
+  sa.querySelector('.fill').style.height=(votes[topic].a/tot*100)+'%';
+  sb.querySelector('.fill').style.height=(votes[topic].b/tot*100)+'%';
+  sa.querySelector('.pct').textContent=pa+'%';
+  sb.querySelector('.pct').textContent=pb+'%';
+  sa.style.outline=myVote[topic]==='a'?'3px solid var(--cyan)':'none';
+  sb.style.outline=myVote[topic]==='b'?'3px solid var(--hot)':'none';
+}
+function reveal(topic){
+  const sl=slides.find(s=>s.dataset.topic==topic);
+  sl.classList.add('results-on');update(topic);
+  fanfare();
+  const sa=sl.querySelector('.side.a'),sb=sl.querySelector('.side.b');
+  sa.classList.remove('win');sb.classList.remove('win');
+  burst();stage.classList.remove('shake');void stage.offsetWidth;stage.classList.add('shake');
+  const tot=votes[topic].a+votes[topic].b;
+  const m=document.querySelector(`[data-meta="${topic}"]`);
+  if(!tot){m.textContent="Nobody voted... cowards. 😏";return;}
+  if(votes[topic].a>votes[topic].b){sa.classList.add('win');m.textContent=`🏆 "${topics[topic].a.t}" takes the room — defend it!`;}
+  else if(votes[topic].b>votes[topic].a){sb.classList.add('win');m.textContent=`🏆 "${topics[topic].b.t}" takes the room — defend it!`;}
+  else m.textContent="🤝 Dead tie. Somebody change a mind.";
+}
+document.addEventListener('click',e=>{
+  const side=e.target.closest('.side');
+  if(side){vote(+side.dataset.topic,side.dataset.side);return;}
+  const rev=e.target.closest('[data-reveal]');
+  if(rev)reveal(+rev.dataset.reveal);
+});
+
+/* ===== NAV ===== */
+let cur=0;
+function go(i){
+  const prev=cur;
+  cur=Math.max(0,Math.min(slides.length-1,i));
+  if(prev!==cur&&AC&&musicOn!==null)whoosh();
+  slides.forEach((s,k)=>s.classList.toggle('active',k===cur));
+  [...dots.children].forEach((d,k)=>d.classList.toggle('on',k===cur));
+  document.getElementById('progress').style.width=(cur/(slides.length-1)*100)+'%';
+  document.getElementById('hudR').textContent=String(cur+1).padStart(2,'0');
+  const tp=slides[cur].dataset.topic;
+  document.getElementById('hudL').textContent=tp!==undefined?`HOT TAKE ${topics[tp].n} / 10`:'HOT TAKES';
+}
+document.getElementById('next').onclick=()=>go(cur+1);
+document.getElementById('prev').onclick=()=>go(cur-1);
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight')go(cur+1);
+  if(e.key==='ArrowLeft')go(cur-1);
+  if(e.key==='Enter'||e.key===' '){const tp=slides[cur].dataset.topic;if(tp!==undefined){e.preventDefault();reveal(+tp);}else go(cur+1);}
+  if(e.key.toLowerCase()==='f'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();}
+  if(e.key.toLowerCase()==='r'){votes.forEach(v=>{v.a=0;v.b=0});myVote.fill(null);
+    document.querySelectorAll('.slide').forEach(s=>{s.classList.remove('results-on');
+      s.querySelectorAll('.fill').forEach(f=>f.style.height='0');
+      s.querySelectorAll('.side').forEach(x=>{x.style.outline='none';x.classList.remove('win')});});
+    document.querySelectorAll('[data-meta]').forEach(m=>m.textContent='No votes yet — tap your side');}
+});
+go(0);
+
+/* ===== CONFETTI ===== */
+function burst(){
+  const cols=['#caff3f','#ff2d6f','#22e0ff','#a06bff','#ffc14d'];
+  for(let i=0;i<110;i++){
+    const c=document.createElement('div');c.className='confetti';
+    const sz=6+Math.random()*9;
+    c.style.width=sz+'px';c.style.height=(sz*1.4)+'px';
+    c.style.left=Math.random()*100+'vw';c.style.background=cols[i%5];
+    c.style.opacity=.9;document.body.appendChild(c);
+    const dx=(Math.random()-.5)*420,dur=1500+Math.random()*1500;
+    c.animate([{transform:'translate(0,0) rotate(0)',opacity:1},
+      {transform:`translate(${dx}px,108vh) rotate(${720+Math.random()*900}deg)`,opacity:.85}],
+      {duration:dur,easing:'cubic-bezier(.25,.6,.4,1)'}).onfinish=()=>c.remove();
+  }
+}
+
+/* ===== SOUND (WebAudio, no files needed) ===== */
+let AC=null, musicOn=false, musicNodes=[];
+function ac(){ if(!AC) AC=new (window.AudioContext||window.webkitAudioContext)(); return AC; }
+function blip(freq=600,dur=.08,type='triangle',vol=.18){
+  const a=ac(),o=a.createOscillator(),g=a.createGain();
+  o.type=type;o.frequency.value=freq;o.connect(g);g.connect(a.destination);
+  g.gain.setValueAtTime(0,a.currentTime);
+  g.gain.linearRampToValueAtTime(vol,a.currentTime+.01);
+  g.gain.exponentialRampToValueAtTime(.0001,a.currentTime+dur);
+  o.start();o.stop(a.currentTime+dur+.02);
+}
+function whoosh(){ // slide transition
+  const a=ac(),o=a.createOscillator(),g=a.createGain(),f=a.createBiquadFilter();
+  o.type='sawtooth';f.type='lowpass';
+  o.frequency.setValueAtTime(120,a.currentTime);
+  o.frequency.exponentialRampToValueAtTime(900,a.currentTime+.25);
+  f.frequency.setValueAtTime(400,a.currentTime);
+  f.frequency.exponentialRampToValueAtTime(3000,a.currentTime+.25);
+  g.gain.setValueAtTime(.0001,a.currentTime);
+  g.gain.linearRampToValueAtTime(.12,a.currentTime+.05);
+  g.gain.exponentialRampToValueAtTime(.0001,a.currentTime+.3);
+  o.connect(f);f.connect(g);g.connect(a.destination);o.start();o.stop(a.currentTime+.32);
+}
+function fanfare(){ // reveal cheer-ish rising arpeggio
+  const notes=[523,659,784,1046,1318];
+  notes.forEach((n,i)=>setTimeout(()=>blip(n,.18,'square',.16),i*70));
+  // sparkle tail
+  for(let i=0;i<6;i++)setTimeout(()=>blip(1500+Math.random()*1200,.09,'sine',.08),350+i*45);
+}
+function tick(){ blip(420,.05,'square',.12); }
+
+/* ambient music: slow chord pad loop */
+function startMusic(){
+  const a=ac();
+  const base=[110,164.81,220,277.18]; // A minor-ish pad
+  base.forEach((fr)=>{
+    const o=a.createOscillator(),g=a.createGain();
+    o.type='sine';o.frequency.value=fr;
+    g.gain.value=0;o.connect(g);g.connect(a.destination);o.start();
+    // gentle swell loop
+    let t=a.currentTime;
+    for(let k=0;k<400;k++){
+      g.gain.setValueAtTime(0.0,t);
+      g.gain.linearRampToValueAtTime(0.035,t+3);
+      g.gain.linearRampToValueAtTime(0.012,t+7);
+      t+=7;
+    }
+    musicNodes.push(o,g);
+  });
+  // soft bass pulse
+  const bo=a.createOscillator(),bg=a.createGain();
+  bo.type='triangle';bo.frequency.value=55;bg.gain.value=.0;
+  bo.connect(bg);bg.connect(a.destination);bo.start();
+  let bt=a.currentTime;
+  for(let k=0;k<800;k++){bg.gain.setValueAtTime(.0001,bt);bg.gain.linearRampToValueAtTime(.05,bt+.05);bg.gain.exponentialRampToValueAtTime(.0001,bt+.4);bt+=1.6;}
+  musicNodes.push(bo,bg);
+}
+function stopMusic(){ musicNodes.forEach(n=>{try{n.stop&&n.stop()}catch(e){}}); musicNodes=[]; }
+function toggleMusic(){
+  ac().resume();
+  musicOn=!musicOn;
+  const b=document.getElementById('soundBtn');
+  if(musicOn){startMusic();b.textContent='♪ sound on';b.classList.add('on');}
+  else{stopMusic();b.textContent='♪ sound off';b.classList.remove('on');}
+}
+
+/* hook sounds into existing actions below */
+
+/* ===== LIVE MULTI-PHONE VOTING =====
+   Uses a free shared key-value bucket (kvdb.io). Everyone hits the same bucket,
+   so votes from every phone combine into one live total.
+   To use your OWN private room, change ROOM below to any random word. */
+const ROOM = "cabin-hottakes-CHANGE-ME";              // <-- change this to a unique word
+const BUCKET = "https://kvdb.io/8Wd2example/";        // <-- replace with your own bucket URL (see instructions)
+const LIVE = false;  // <-- set to true after you create a bucket (see the README)
+
+async function liveGet(topic){
+  try{
+    const r=await fetch(BUCKET+ROOM+"_"+topic);
+    if(!r.ok) return {a:0,b:0};
+    const t=await r.text();
+    return t?JSON.parse(t):{a:0,b:0};
+  }catch(e){return {a:0,b:0};}
+}
+async function liveSet(topic,obj){
+  try{ await fetch(BUCKET+ROOM+"_"+topic,{method:'POST',body:JSON.stringify(obj)});}catch(e){}
+}
+async function liveVote(topic,side){
+  if(myVote[topic]===side)return;
+  const cur=await liveGet(topic);
+  if(myVote[topic])cur[myVote[topic]]=Math.max(0,(cur[myVote[topic]]||0)-1);
+  cur[side]=(cur[side]||0)+1;
+  myVote[topic]=side;votes[topic]=cur;
+  await liveSet(topic,cur);
+  update(topic);tick&&tick();
+}
+async function syncTopic(topic){
+  if(!LIVE)return;
+  votes[topic]=await liveGet(topic);
+  update(topic);
+}
+if(LIVE){
+  // override the click handler to use live votes
+  document.addEventListener('click',e=>{
+    const side=e.target.closest('.side');
+    if(side){liveVote(+side.dataset.topic,side.dataset.side);}
+  },true);
+  // poll the current topic every 2s so totals stay live across phones
+  setInterval(()=>{const tp=slides[cur]?.dataset.topic;if(tp!==undefined)syncTopic(+tp);},2000);
+}
+
+</script>
+
+
+</body></html>
