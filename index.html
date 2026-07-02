@@ -6,7 +6,7 @@
 <title>HOT TAKES — Cabin Trip</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;700;800&display=swap');
- 
+
   :root{
     --bg:#06060c;
     --panel:rgba(22,22,38,.72);
@@ -22,7 +22,7 @@
   html,body{height:100%;overflow:hidden}
   body{background:var(--bg);color:var(--ink);font-family:'Space Grotesk',sans-serif;
     -webkit-font-smoothing:antialiased;position:relative;perspective:1600px}
- 
+
   /* ===== living background ===== */
   .aura{position:fixed;inset:-30%;z-index:0;filter:blur(90px);opacity:.55;
     background:
@@ -43,18 +43,18 @@
     background:repeating-linear-gradient(0deg,#fff,#fff 1px,transparent 1px,transparent 2px)}
   .vign{position:fixed;inset:0;z-index:2;pointer-events:none;
     background:radial-gradient(circle at 50% 45%,transparent 55%,rgba(0,0,0,.65))}
- 
+
   .stage{position:relative;z-index:5;height:100vh;width:100vw}
   .shake{animation:shake .5s cubic-bezier(.36,.07,.19,.97)}
   @keyframes shake{10%,90%{transform:translate(-2px,1px)}20%,80%{transform:translate(4px,-2px)}
     30%,50%,70%{transform:translate(-6px,2px)}40%,60%{transform:translate(6px,-1px)}}
- 
+
   .slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;
     align-items:center;padding:5vh 6vw;text-align:center;
     opacity:0;visibility:hidden;transform:translateZ(-180px) rotateX(6deg);
     transition:opacity .6s ease,transform .7s cubic-bezier(.18,.9,.16,1),visibility .6s}
   .slide.active{opacity:1;visibility:visible;transform:none}
- 
+
   /* orchestrated child reveals */
   .slide.active .pop{animation:rise .8s cubic-bezier(.2,1.25,.25,1) backwards}
   .slide.active .pop:nth-child(1){animation-delay:.08s}
@@ -65,11 +65,11 @@
   .slide.active .pop:nth-child(6){animation-delay:.68s}
   @keyframes rise{from{opacity:0;transform:translateY(46px) scale(.96) rotateX(12deg);filter:blur(6px)}
     to{opacity:1;transform:none;filter:blur(0)}}
- 
+
   .eyebrow{font-family:'JetBrains Mono',monospace;letter-spacing:.45em;text-transform:uppercase;
     font-size:clamp(.6rem,1.4vw,.85rem);color:var(--acid);margin-bottom:2.4vh;
     text-shadow:0 0 18px rgba(202,255,63,.5)}
- 
+
   h1.title{font-family:'Anton',sans-serif;font-weight:400;
     font-size:clamp(3rem,12vw,10rem);line-height:.86;letter-spacing:.01em;text-transform:uppercase}
   .stroke{color:transparent;-webkit-text-stroke:clamp(1.5px,.35vw,3px) var(--ink)}
@@ -77,19 +77,19 @@
     background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
     animation:shine 6s linear infinite;filter:drop-shadow(0 4px 30px rgba(160,107,255,.35))}
   @keyframes shine{to{background-position:300% 0}}
- 
+
   .glitch{position:relative;display:inline-block}
   .glitch::before,.glitch::after{content:attr(data-t);position:absolute;left:0;top:0;width:100%}
   .glitch::before{color:var(--hot);animation:gl1 3s infinite steps(2);clip-path:inset(0 0 55% 0)}
   .glitch::after{color:var(--cyan);animation:gl2 3.4s infinite steps(2);clip-path:inset(55% 0 0 0)}
   @keyframes gl1{0%,92%,100%{transform:none}93%{transform:translate(-5px,-2px)}96%{transform:translate(4px,1px)}}
   @keyframes gl2{0%,90%,100%{transform:none}94%{transform:translate(5px,2px)}97%{transform:translate(-4px,-1px)}}
- 
+
   .makers{margin-top:4.5vh;font-family:'JetBrains Mono',monospace;
     font-size:clamp(.8rem,2vw,1.2rem);color:var(--dim)}
   .makers b{color:var(--amber);font-weight:800;text-shadow:0 0 14px rgba(255,193,77,.45)}
   .kicker{font-size:clamp(1rem,2.4vw,1.55rem);color:#d6d6ec;max-width:58ch;margin-top:3vh;line-height:1.5}
- 
+
   /* ===== topic ===== */
   .topic-num{font-family:'Anton';font-size:clamp(3.5rem,16vw,13rem);line-height:.72;
     color:transparent;-webkit-text-stroke:2px var(--acid);opacity:.45;
@@ -97,7 +97,7 @@
   .topic-q{font-family:'Anton';font-weight:400;font-size:clamp(1.9rem,5.8vw,4.8rem);
     line-height:1;text-transform:uppercase;max-width:20ch;margin:1vh 0 1.6vh;letter-spacing:.005em}
   .topic-sub{color:#c4c4dc;font-size:clamp(.9rem,2vw,1.22rem);max-width:64ch;line-height:1.55}
- 
+
   .sides{display:flex;gap:clamp(14px,3vw,44px);margin-top:4vh;flex-wrap:wrap;justify-content:center;
     perspective:900px}
   .side{position:relative;overflow:hidden;border-radius:20px;padding:22px 28px;
@@ -126,7 +126,7 @@
   @keyframes winpulse{0%{transform:scale(1)}30%{transform:scale(1.07)}100%{transform:scale(1)}}
   .side.win.a{box-shadow:0 0 0 3px var(--cyan),0 24px 70px -10px var(--cyan)}
   .side.win.b{box-shadow:0 0 0 3px var(--hot),0 24px 70px -10px var(--hot)}
- 
+
   .vote-meta{margin-top:2.6vh;font-family:'JetBrains Mono';font-size:.9rem;color:#cfcfe6;height:1.4em}
   .reveal-btn{margin-top:2.4vh;position:relative;background:linear-gradient(100deg,var(--acid),var(--cyan));
     color:#05050a;border:none;font-family:'JetBrains Mono';font-weight:800;padding:14px 28px;border-radius:99px;
@@ -138,7 +138,7 @@
     background:linear-gradient(90deg,transparent,rgba(255,255,255,.7),transparent);
     animation:sweep 2.6s ease-in-out infinite}
   @keyframes sweep{0%{left:-60%}55%,100%{left:130%}}
- 
+
   /* HUD */
   .hud{position:fixed;z-index:30;bottom:18px;left:0;right:0;display:flex;justify-content:space-between;
     align-items:center;padding:0 26px;font-family:'JetBrains Mono';font-size:.72rem;color:var(--dim);pointer-events:none}
@@ -152,24 +152,24 @@
     flex-direction:column;gap:9px}
   .dot{width:8px;height:8px;border-radius:50%;background:#3a3a52;transition:.3s;cursor:pointer}
   .dot.on{background:var(--acid);box-shadow:0 0 12px var(--acid);transform:scale(1.4)}
- 
+
   .hint{position:fixed;top:16px;right:22px;z-index:30;font-family:'JetBrains Mono';font-size:.66rem;
     color:var(--dim);text-align:right;line-height:1.7}
   kbd{background:rgba(20,20,34,.7);border:1px solid #333;border-radius:5px;padding:1px 6px;color:var(--ink)}
- 
+
   .confetti{position:fixed;z-index:25;pointer-events:none;top:-24px;border-radius:2px}
   .live-dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--hot);
     margin-right:8px;animation:blink 1s infinite;box-shadow:0 0 12px var(--hot)}
   @keyframes blink{50%{opacity:.2}}
- 
- 
+
+
   #soundBtn{position:fixed;top:14px;left:20px;z-index:40;cursor:pointer;
     font-family:'JetBrains Mono';font-size:.7rem;letter-spacing:.05em;
     background:rgba(20,20,34,.7);backdrop-filter:blur(8px);border:1px solid #2c2c44;
     color:var(--dim);padding:9px 16px;border-radius:99px;transition:.2s}
   #soundBtn:hover{border-color:var(--acid);color:var(--acid)}
   #soundBtn.on{color:var(--acid);border-color:var(--acid);box-shadow:0 0 18px -4px var(--acid)}
- 
+
   @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:opacity .25s!important}}
 </style>
 </head>
@@ -180,21 +180,21 @@
 <div class="vign"></div>
 <div class="progress" id="progress"></div>
 <div class="dots" id="dots"></div>
- 
+
 <button id="soundBtn" onclick="toggleMusic()">♪ sound off</button>
 <div class="hint">
   <kbd>←</kbd> <kbd>→</kbd> navigate · <kbd>Enter</kbd> reveal<br>
   <kbd>F</kbd> fullscreen · <kbd>R</kbd> reset votes
 </div>
- 
+
 <div class="stage" id="stage"></div>
- 
+
 <div class="hud">
   <div id="hudL">HOT TAKES</div>
   <div class="mid"><button class="nav" id="prev">‹</button><button class="nav" id="next">›</button></div>
   <div id="hudR">01</div>
 </div>
- 
+
 <script>
 /* ===== DATA — spicier, deeper ===== */
 const topics = [
@@ -229,10 +229,10 @@ const topics = [
    sub:"Every joy, every heartbreak, every mistake, on infinite repeat. If you hesitate even a second... what does that say about how you're living now?",
    a:{t:"YES, AGAIN",d:"I'd say yes to all of it"}, b:{t:"NOT LIKE THIS",d:"I'd need to change something first"}},
 ];
- 
+
 /* ===== BUILD ===== */
 const stage=document.getElementById('stage');
- 
+
 const title=document.createElement('div');
 title.className='slide';
 title.innerHTML=`
@@ -242,7 +242,7 @@ title.innerHTML=`
   <p class="kicker pop">10 questions deep enough to keep you up at night — and divisive enough to end a friendship by morning. Vote anonymously. Then defend it by the fire. 🔥</p>
   <div class="makers pop">made by <b>Tom</b> · <b>Lemma</b> · <b>Meghana</b></div>`;
 stage.appendChild(title);
- 
+
 const join=document.createElement('div');
 join.className='slide';
 join.innerHTML=`
@@ -251,7 +251,7 @@ join.innerHTML=`
   <p class="kicker pop">Each question has two sides. Tap the one you believe — <b style="color:var(--acid)">100% anonymous</b>, nobody sees your pick. The presenter hits <b style="color:var(--cyan)">REVEAL</b>, the room splits, and then you have to look each other in the eye. 👀</p>
   <div class="makers pop" style="margin-top:5vh">Tap a side → it locks → <b>REVEAL</b> → explain yourself</div>`;
 stage.appendChild(join);
- 
+
 topics.forEach((t,i)=>{
   const s=document.createElement('div');
   s.className='slide';s.dataset.topic=i;
@@ -267,7 +267,7 @@ topics.forEach((t,i)=>{
     <button class="reveal-btn pop" data-reveal="${i}">Reveal the split</button>`;
   stage.appendChild(s);
 });
- 
+
 const end=document.createElement('div');
 end.className='slide';
 end.innerHTML=`
@@ -277,28 +277,23 @@ end.innerHTML=`
   <p class="kicker pop">Defend your darkest takes. Nobody leaves the cabin the same. 🛖</p>
   <div class="makers pop" style="margin-top:5vh">made with chaos by <b>Tom</b>, <b>Lemma</b> & <b>Meghana</b></div>`;
 stage.appendChild(end);
- 
+
 const slides=[...document.querySelectorAll('.slide')];
- 
+
 /* dots */
 const dots=document.getElementById('dots');
 slides.forEach((_,i)=>{const d=document.createElement('div');d.className='dot';d.onclick=()=>go(i);dots.appendChild(d)});
- 
+
 /* ===== VOTING ===== */
 const votes=topics.map(()=>({a:0,b:0}));
 const myVote=topics.map(()=>null);
- 
+
+// Every tap counts. NO visual feedback, NO sound — button looks inert.
 function vote(topic,side){
-  if(myVote[topic]===side)return;
-  if(musicOn||AC)tick();
-  if(myVote[topic])votes[topic][myVote[topic]]--;
-  votes[topic][side]++;myVote[topic]=side;
-  update(topic);
-  const m=document.querySelector(`[data-meta="${topic}"]`);
-  const tot=votes[topic].a+votes[topic].b;
-  m.textContent=`✓ Locked in · ${tot} vote${tot>1?'s':''} cast · still anonymous`;
+  votes[topic][side]++;
 }
-function update(topic){
+// paintResults() only runs on reveal — this is the ONLY place bars/percentages show
+function paintResults(topic){
   const sl=slides.find(s=>s.dataset.topic==topic);
   const tot=votes[topic].a+votes[topic].b||1;
   const pa=Math.round(votes[topic].a/tot*100), pb=100-pa;
@@ -307,12 +302,12 @@ function update(topic){
   sb.querySelector('.fill').style.height=(votes[topic].b/tot*100)+'%';
   sa.querySelector('.pct').textContent=pa+'%';
   sb.querySelector('.pct').textContent=pb+'%';
-  sa.style.outline=myVote[topic]==='a'?'3px solid var(--cyan)':'none';
-  sb.style.outline=myVote[topic]==='b'?'3px solid var(--hot)':'none';
 }
+// kept as a no-op so any leftover calls do nothing during voting
+function update(topic){}
 function reveal(topic){
   const sl=slides.find(s=>s.dataset.topic==topic);
-  sl.classList.add('results-on');update(topic);
+  sl.classList.add('results-on');paintResults(topic);
   fanfare();
   const sa=sl.querySelector('.side.a'),sb=sl.querySelector('.side.b');
   sa.classList.remove('win');sb.classList.remove('win');
@@ -325,12 +320,12 @@ function reveal(topic){
   else m.textContent="🤝 Dead tie. Somebody change a mind.";
 }
 document.addEventListener('click',e=>{
-  const side=e.target.closest('.side');
-  if(side){vote(+side.dataset.topic,side.dataset.side);return;}
   const rev=e.target.closest('[data-reveal]');
-  if(rev)reveal(+rev.dataset.reveal);
+  if(rev){reveal(+rev.dataset.reveal);return;}
+  const side=e.target.closest('.side');
+  if(side){vote(+side.dataset.topic,side.dataset.side);}
 });
- 
+
 /* ===== NAV ===== */
 let cur=0;
 function go(i){
@@ -352,13 +347,14 @@ document.addEventListener('keydown',e=>{
   if(e.key==='Enter'||e.key===' '){const tp=slides[cur].dataset.topic;if(tp!==undefined){e.preventDefault();reveal(+tp);}else go(cur+1);}
   if(e.key.toLowerCase()==='f'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();}
   if(e.key.toLowerCase()==='r'){votes.forEach(v=>{v.a=0;v.b=0});myVote.fill(null);
+    if(window.resetRoom) window.resetRoom();
     document.querySelectorAll('.slide').forEach(s=>{s.classList.remove('results-on');
       s.querySelectorAll('.fill').forEach(f=>f.style.height='0');
       s.querySelectorAll('.side').forEach(x=>{x.style.outline='none';x.classList.remove('win')});});
     document.querySelectorAll('[data-meta]').forEach(m=>m.textContent='No votes yet — tap your side');}
 });
 go(0);
- 
+
 /* ===== CONFETTI ===== */
 function burst(){
   const cols=['#caff3f','#ff2d6f','#22e0ff','#a06bff','#ffc14d'];
@@ -374,7 +370,7 @@ function burst(){
       {duration:dur,easing:'cubic-bezier(.25,.6,.4,1)'}).onfinish=()=>c.remove();
   }
 }
- 
+
 /* ===== SOUND (WebAudio, no files needed) ===== */
 let AC=null, musicOn=false, musicNodes=[];
 function ac(){ if(!AC) AC=new (window.AudioContext||window.webkitAudioContext)(); return AC; }
@@ -405,7 +401,7 @@ function fanfare(){ // reveal cheer-ish rising arpeggio
   for(let i=0;i<6;i++)setTimeout(()=>blip(1500+Math.random()*1200,.09,'sine',.08),350+i*45);
 }
 function tick(){ blip(420,.05,'square',.12); }
- 
+
 /* ambient music: slow chord pad loop */
 function startMusic(){
   const a=ac();
@@ -440,52 +436,9 @@ function toggleMusic(){
   if(musicOn){startMusic();b.textContent='♪ sound on';b.classList.add('on');}
   else{stopMusic();b.textContent='♪ sound off';b.classList.remove('on');}
 }
- 
+
 /* hook sounds into existing actions below */
- 
-/* ===== LIVE MULTI-PHONE VOTING =====
-   Uses a free shared key-value bucket (kvdb.io). Everyone hits the same bucket,
-   so votes from every phone combine into one live total.
-   To use your OWN private room, change ROOM below to any random word. */
-const ROOM = "cabin-fireside-2026";                   // your private room word
-const BUCKET = "https://kvdb.io/8jpexL5fRFj3aGgVPCNQV5/"; // your kvdb bucket
-const LIVE = true;   // live phone voting is ON
- 
-async function liveGet(topic){
-  try{
-    const r=await fetch(BUCKET+ROOM+"_"+topic);
-    if(!r.ok) return {a:0,b:0};
-    const t=await r.text();
-    return t?JSON.parse(t):{a:0,b:0};
-  }catch(e){return {a:0,b:0};}
-}
-async function liveSet(topic,obj){
-  try{ await fetch(BUCKET+ROOM+"_"+topic,{method:'POST',body:JSON.stringify(obj)});}catch(e){}
-}
-async function liveVote(topic,side){
-  if(myVote[topic]===side)return;
-  const cur=await liveGet(topic);
-  if(myVote[topic])cur[myVote[topic]]=Math.max(0,(cur[myVote[topic]]||0)-1);
-  cur[side]=(cur[side]||0)+1;
-  myVote[topic]=side;votes[topic]=cur;
-  await liveSet(topic,cur);
-  update(topic);tick&&tick();
-}
-async function syncTopic(topic){
-  if(!LIVE)return;
-  votes[topic]=await liveGet(topic);
-  update(topic);
-}
-if(LIVE){
-  // override the click handler to use live votes
-  document.addEventListener('click',e=>{
-    const side=e.target.closest('.side');
-    if(side){liveVote(+side.dataset.topic,side.dataset.side);}
-  },true);
-  // poll the current topic every 2s so totals stay live across phones
-  setInterval(()=>{const tp=slides[cur]?.dataset.topic;if(tp!==undefined)syncTopic(+tp);},2000);
-}
- 
+
 </script>
 </body>
 </html>
